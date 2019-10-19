@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.3.2
+    tty: true
+    stdin_open: true
+    privileged: true
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+  
+  kibana:
+    image: kibana:7.3.2
+    ports:
+      - 5601:5601
+
+volumes:
+  es-data: {}
